@@ -1,0 +1,6 @@
+.DS_Store
+bundle.js
+configuration.js
+/node_modules
+/dist
+/public
