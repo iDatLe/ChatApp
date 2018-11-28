@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Chatkit, { ChatManager, TokenProvider } from '@pusher/chatkit-client';
+import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
+import MessageContainer from '../container/MessageContainer';
 
 class ChatScreen extends Component {
 
@@ -8,14 +9,25 @@ class ChatScreen extends Component {
             instanceLocator: 'v1:us1:8f5e48cf-aae6-458e-bc5c-3eb9ba5bb8d3',
             userId: this.props.usernameForm.username,
             tokenProvider: new TokenProvider({
-                url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/8f5e48cf-aae6-458e-bc5c-3eb9ba5bb8d3/token',
-                headers: {'Content-Type': 'application/json'}
+                url: 'http://localhost:3001/api/authenticate',
             })
         })
 
         chatManager
             .connect()
-            .then(currentUser =>{ console.log('currentUser', currentUser)})
+            .then(currentUser => {
+            return currentUser.subscribeToRoom({
+                    roomId: '19387093',
+                    messageLimit: 100,
+                    hooks: {
+                        onMessage: message => {
+                            console.log(message)
+                            this.props.messageChange(message)
+                        }
+                    }
+                })
+            })
+            .then(currentRoom => {})
             .catch(error => {console.error(error)})
     }
 
@@ -23,7 +35,9 @@ class ChatScreen extends Component {
         return(
             <div>
                 <h1>Hello</h1>
-                <p>Welcome, {this.props.usernameForm.username}</p>                
+                <p>Welcome, {this.props.usernameForm.username}</p>     
+
+                <MessageContainer />       
             </div>
         )
     }

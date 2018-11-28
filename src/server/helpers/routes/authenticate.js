@@ -6,13 +6,14 @@ const { chatkit } = configuration
 
 router.post('/', 
     (req, res) => {
-        const { grant_type } = req.body
-        const authData = res.json(chatkit.authenticate({
-            grant_type: grant_type,
+        console.log("You've reached the authentication api.")
+        const authData = (chatkit.authenticate({
+            grant_type: 'client_credentials',
             userId: req.query.user_id
         }))
+
         res.status(authData.status)
-            .send(authData.Body);
+            .send(authData.body);
     }
 )
 

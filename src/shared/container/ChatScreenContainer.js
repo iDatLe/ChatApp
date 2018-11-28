@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import ChatScreen from '../components/ChatScreen';
 import { connect } from 'react-redux';
+import {messageAction} from '../redux/actions';
 
 class ChatScreenContainer extends Component {
+
+    messageChange = (message) => {
+        this.props.change(message)
+    }
+
     render() {
         return(
             <ChatScreen
                 usernameForm={this.props.usernameForm}
+                messages={this.props.messages}
+
+                messageChange={this.messageChange}
             />
         )
     }
@@ -14,12 +23,17 @@ class ChatScreenContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        usernameForm : state.UsernameReducer
+        usernameForm : state.UsernameReducer,
+        messages: state.MessageReducer
     }
 }
 
-// function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
+    return {
+        change : (message) => {
+            dispatch(messageAction(message))
+        }
+    }
+}
 
-// }
-
-export default connect(mapStateToProps, null)(ChatScreenContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatScreenContainer);

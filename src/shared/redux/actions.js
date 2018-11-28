@@ -6,6 +6,13 @@ export function onChangeAction(name, value) {
     }
 }
 
+export function messageAction(message) {
+    return {
+        type: "MESSAGE_CHANGE",
+        message
+    }
+}
+
 export function usernameForm(data) {
     return (dispatch) => {
         return fetch('/api/users', {
