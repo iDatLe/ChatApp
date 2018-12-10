@@ -13,6 +13,26 @@ export function messageAction(message) {
     }
 }
 
+export function currentUserAction(currentUser) {
+    return {
+        type: "CURRENTUSER_CHANGE",
+        currentUser
+    }
+}
+
+export function currentRoomAction(currentRoom) {
+    return {
+        type: "CURRENT_ROOM",
+        currentRoom
+    }
+}
+
+export function resetAction() {
+    return {
+        type: "RESET_FIELD",
+    }
+}
+
 export function usernameForm(data) {
     return (dispatch) => {
         return fetch('/api/users', {

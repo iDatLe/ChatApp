@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import MessageContainer from '../container/MessageContainer';
+import SendMessageContainer from '../container/SendMessageContainer';
 
 class ChatScreen extends Component {
 
@@ -16,8 +17,9 @@ class ChatScreen extends Component {
         chatManager
             .connect()
             .then(currentUser => {
+            this.props.currentUserChange(currentUser)
             return currentUser.subscribeToRoom({
-                    roomId: '19387093',
+                    roomId: '19391766',
                     messageLimit: 100,
                     hooks: {
                         onMessage: message => {
@@ -27,7 +29,7 @@ class ChatScreen extends Component {
                     }
                 })
             })
-            .then(currentRoom => {})
+            .then(currentRoom => this.props.currentRoomChange(currentRoom))
             .catch(error => {console.error(error)})
     }
 
@@ -37,7 +39,8 @@ class ChatScreen extends Component {
                 <h1>Hello</h1>
                 <p>Welcome, {this.props.usernameForm.username}</p>     
 
-                <MessageContainer />       
+                <MessageContainer />  
+                <SendMessageContainer />     
             </div>
         )
     }
