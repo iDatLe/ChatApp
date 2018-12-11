@@ -3,6 +3,7 @@ import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import MessageContainer from '../container/MessageContainer';
 import SendMessageContainer from '../container/SendMessageContainer';
 import TypingContainer from '../container/TypingContainer';
+import OnlineContainer from '../container/OnlineContainer';
 
 class ChatScreen extends Component {
 
@@ -20,14 +21,16 @@ class ChatScreen extends Component {
             .then(currentUser => {
             this.props.currentUserChange(currentUser)
             return currentUser.subscribeToRoom({
-                    roomId: '19391766',
+                    roomId: '19392022',
                     messageLimit: 100,
                     hooks: {
                         onMessage: message => {
                             this.props.messageChange(message) //sends message data back to function in container
                         },
                         onUserStartedTyping: user => {this.props.usersTyping(user.name)},
-                        onUserStoppedTyping: user => {this.props.usersStoppedTyping(user.name)}
+                        onUserStoppedTyping: user => {this.props.usersStoppedTyping(user.name)},
+                        onPresenceChanged: (state, user) => {this.props.presenceChanged(state, user)},
+                        onUserJoined: user => {} 
                     }
                 })
             })
@@ -39,24 +42,25 @@ class ChatScreen extends Component {
         return(
             <div style={{
                 display: 'flex',
-                height: '100vh'
-            }}>
-                {/* <p>Welcome, {this.props.usernameForm.username}</p>      */}
+                height: '100vh'}}>
+
                 <div style={{
                     width: '30%',
-                    background: 'tomato'
-                }}>
+                    background: 'tomato'}}>
+
                     <h2>List of users online</h2>
+                    <OnlineContainer />
                 </div>
+
                 <div style={{
                     display: 'flex',
-                    flexDirection: 'column'
-                }}>
+                    flexDirection: 'column'}}>
                     <div style={{
                         flex: 1
                     }}>
                         <MessageContainer />
                     </div>
+
                     <TypingContainer />
                     <SendMessageContainer /> 
                 </div>   

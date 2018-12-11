@@ -41,11 +41,27 @@ export function stoppedTypingAction(users) {
     }
 }
 
+export function presenceAction(state, user) {
+    return {
+        type: "PRESENCE_CHANGE",
+        state,
+        user
+    }
+}
+
+export function userJoinedAction(user) {
+    return {
+        type: "USER_JOINED",
+        user
+    }
+}
+
 export function resetAction() {
     return {
         type: "RESET_FIELD",
     }
 }
+
 
 export function usernameForm(data) {
     return (dispatch) => {

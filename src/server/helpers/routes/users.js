@@ -7,7 +7,6 @@ const { chatkit } = configuration
 router.post('/', 
     (req, res) => {
         const { username } = req.body
-        console.log(username, 'users route')
         chatkit
             .createUser({
                 name: username,

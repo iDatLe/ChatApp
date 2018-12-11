@@ -6,7 +6,8 @@ import {
     currentUserAction, 
     currentRoomAction,
     usersTypingAction,
-    stoppedTypingAction
+    stoppedTypingAction,
+    presenceAction,
 } from '../redux/actions';
 
 class ChatScreenContainer extends Component {
@@ -31,6 +32,10 @@ class ChatScreenContainer extends Component {
         this.props.stoppedTyping(users) //Filters users that stopped typing from array
     }
 
+    presenceChanged = (state, user) => {
+        this.props.presenceChanged(state, user)
+    }
+
     render() {
         return(
             <ChatScreen
@@ -42,6 +47,7 @@ class ChatScreenContainer extends Component {
                 currentRoomChange={this.currentRoomChange}
                 usersTyping={this.usersTyping}
                 usersStoppedTyping={this.usersStoppedTyping}
+                presenceChanged={this.presenceChanged}
             />
         )
     }
@@ -70,6 +76,9 @@ function mapDispatchToProps(dispatch) {
         },
         stoppedTyping : (users) => {
             dispatch(stoppedTypingAction(users))
+        },
+        presenceChanged : (state, user) => {
+            dispatch(presenceAction(state, user))
         }
     }
 
