@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client';
 import MessageContainer from '../container/MessageContainer';
 import SendMessageContainer from '../container/SendMessageContainer';
+import TypingContainer from '../container/TypingContainer';
 
 class ChatScreen extends Component {
 
@@ -23,9 +24,10 @@ class ChatScreen extends Component {
                     messageLimit: 100,
                     hooks: {
                         onMessage: message => {
-                            console.log(message)
-                            this.props.messageChange(message)
-                        }
+                            this.props.messageChange(message) //sends message data back to function in container
+                        },
+                        onUserStartedTyping: user => {this.props.usersTyping(user.name)},
+                        onUserStoppedTyping: user => {this.props.usersStoppedTyping(user.name)}
                     }
                 })
             })
@@ -35,12 +37,29 @@ class ChatScreen extends Component {
 
     render() {
         return(
-            <div>
-                <h1>Hello</h1>
-                <p>Welcome, {this.props.usernameForm.username}</p>     
-
-                <MessageContainer />  
-                <SendMessageContainer />     
+            <div style={{
+                display: 'flex',
+                height: '100vh'
+            }}>
+                {/* <p>Welcome, {this.props.usernameForm.username}</p>      */}
+                <div style={{
+                    width: '30%',
+                    background: 'tomato'
+                }}>
+                    <h2>List of users online</h2>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}>
+                    <div style={{
+                        flex: 1
+                    }}>
+                        <MessageContainer />
+                    </div>
+                    <TypingContainer />
+                    <SendMessageContainer /> 
+                </div>   
             </div>
         )
     }

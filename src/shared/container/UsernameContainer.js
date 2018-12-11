@@ -11,8 +11,7 @@ class UsernameContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const data = {username:this.props.usernameForm.username};
-        console.log(data)
+        const data = {username:this.props.usernameForm.username}; //extracting just the username to submit
         this.props.submit(data);
     }
 

@@ -27,6 +27,20 @@ export function currentRoomAction(currentRoom) {
     }
 }
 
+export function usersTypingAction(users) {
+    return {
+        type: "USERS_TYPING",
+        users
+    }
+}
+
+export function stoppedTypingAction(users) {
+    return {
+        type: "USERS_STOPPED_TYPING",
+        users
+    }
+}
+
 export function resetAction() {
     return {
         type: "RESET_FIELD",
@@ -42,15 +56,12 @@ export function usernameForm(data) {
         })
         .then((res) => {
             if(res.status === 201) {
-                console.log('Posted username')
                 dispatch(currentUsername(data)) // After response, dispatch action w/ data
             } else {
                 console.log('Username failed')
             }
         })
-        .catch(error => {
-            console.error(error)
-        })
+        .catch(error => console.error(error))
     }
 }
 

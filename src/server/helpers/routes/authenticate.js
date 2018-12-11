@@ -7,13 +7,13 @@ const { chatkit } = configuration
 router.post('/', 
     (req, res) => {
         console.log("You've reached the authentication api.")
-        const authData = (chatkit.authenticate({
+        const authData = (chatkit.authenticate({ //chatkit's authentication method
             grant_type: 'client_credentials',
-            userId: req.query.user_id
+            userId: req.query.user_id //this is grabbed from the client
         }))
 
         res.status(authData.status)
-            .send(authData.body);
+            .send(authData.body); //we're sending data back to the server
     }
 )
 

@@ -2,6 +2,7 @@ const initialState = {
     messages: [],
     currentRoom: {},
     currentUser: {},
+    usersWhoAreTyping: [],
     text: ''
 }
 
@@ -26,6 +27,18 @@ function MessagesReducer(state=initialState, action) {
             return {
                 ...state,
                 currentRoom: action.currentRoom
+            }
+        case "USERS_TYPING":
+            return {
+                ...state,
+                usersWhoAreTyping: [...state.usersWhoAreTyping, action.users]
+            }
+        case "USERS_STOPPED_TYPING":
+            return {
+                ...state,
+                usersWhoAreTyping: state.usersWhoAreTyping.filter(
+                    username => username !== action.users
+                )
             }
         case "RESET_FIELD":
             return {

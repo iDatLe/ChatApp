@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class MessageList extends Component {
     render() {
-        console.log(this.props.messages.messages)
+
         return(
             <ul>
                 {this.props.messages.messages.map((message, index) => (

@@ -15,10 +15,10 @@ router.post('/',
             })
             .then(() => res.sendStatus(201))
             .catch(error => {
-                if(error.error_type === '/services/chatkit/user_already_exists') {
-                    res.sendStatus(200)
+                if(error.error === 'services/chatkit/user_already_exists') {
+                    res.sendStatus(201) //Even if user exists, log them in
                 } else {
-                    console.log(error.error)
+                    console.log('ERROR', error)
                 } 
                 
             })
