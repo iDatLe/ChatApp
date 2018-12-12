@@ -5,6 +5,7 @@ import cors from 'cors';
 
 var userRoute = require('./helpers/routes/users.js');
 var authRoute = require('./helpers/routes/authenticate.js');
+var deleteUserRoute = require('./helpers/routes/deleteUser.js');
 var app = express();
 
 // BODY PARSER --------------------
@@ -16,6 +17,7 @@ app.use(cors());
 //ROUTES --------------------------
 app.use('/api/users', userRoute);
 app.use('/api/authenticate', authRoute);
+app.use('/api/delete', deleteUserRoute);
 
 app.use(handleRender);
 

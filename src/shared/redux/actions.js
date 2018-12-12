@@ -65,6 +65,7 @@ export function resetAction() {
 
 export function usernameForm(data) {
     return (dispatch) => {
+        console.log(data)
         return fetch('/api/users', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -85,5 +86,22 @@ export function currentUsername(data) {
     return {
         type: "CURRENT_USERNAME",
         data //contains username in json format
+    }
+}
+
+export function deleteUserAction(data) {
+    return (dispatch) => {
+        console.log(data)
+        return fetch('/api/delete', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then((res) => {
+          if(res.status === 201) {//dispatch delete user and return back to home screen
+            dispatch({type: "RESET"})
+          }
+        })
+        .catch(error => console.log(error))
     }
 }

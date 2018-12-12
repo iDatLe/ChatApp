@@ -10,7 +10,8 @@ import React, { Component } from 'react';
                         name="username"
                         value={this.props.usernameForm.username}
                         placeholder="What is your username?" 
-                        onChange={this.props.onChange} />
+                        onChange={this.props.onChange} 
+                        autoComplete="off" />
 
                      <input type="submit" />
                  </form>

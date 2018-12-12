@@ -39,25 +39,45 @@ class ChatScreen extends Component {
     }
 
     render() {
-        return(
-            <div style={{
+
+        const styles = {
+            container: {
+                height: '100vh',
                 display: 'flex',
-                height: '100vh'}}>
+                flexDirection: 'row'
+            },
+            chatContainer: {
+                display: 'flex',
+                flex: 1
+            },
+            onlineList: {
+                width: '300px',
+                height: '100vh',
+                flex: 'none',
+                padding: 20,
+                backgroundColor: '#2c303b',
+                color: 'white'
+            },
+            chatList: {
+                padding: 20,
+                width: '85%',
+                display: 'flex',
+                flexDirection: 'column'
+            }
+        }
 
-                <div style={{
-                    width: '30%',
-                    background: 'tomato'}}>
-
-                    <h2>List of users online</h2>
-                    <OnlineContainer />
+        return(
+            <div style={styles.container}>
+            
+                <div style={styles.chatContainer}>
+                    <aside style={styles.onlineList}>
+                        <h2>List of users</h2>
+                        <OnlineContainer />
+                    </aside>
                 </div>
 
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column'}}>
-                    <div style={{
-                        flex: 1
-                    }}>
+                <div style={styles.chatList}>
+                    <div style={{flex: 1}}>
                         <MessageContainer />
                     </div>
 
