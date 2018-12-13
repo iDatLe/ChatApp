@@ -11,7 +11,8 @@ import React, { Component } from 'react';
                         value={this.props.usernameForm.username}
                         placeholder="What is your username?" 
                         onChange={this.props.onChange} 
-                        autoComplete="off" />
+                        // autoComplete="off" 
+                        />
 
                      <input type="submit" />
                  </form>

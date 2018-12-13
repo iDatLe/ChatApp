@@ -32,7 +32,7 @@ import React, { Component } from 'react';
                         value={this.props.sendMessageForm.text}
                         placeholder="Send a message" 
                         onChange={this.props.onChange} 
-                        // autoComplete="off" 
+                        autoComplete="off" 
                         />
 
                      <input type="submit" />
