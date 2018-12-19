@@ -37,9 +37,15 @@ export const handleRender = (req, res) => {
 
 export const renderFullPage = (content, initialState) => {
     return `
-        <html lang = 'en'>
+    <!DOCTYPE html>
+        <html lang="en">
             <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="Description" content="Real-time message system utilizing ChatKit.">
+            <meta name="theme-color" content="#3367D6">
+            <meta charset="UTF-8">
                 <title>Chat App</title>
+                <link rel="manifest" href="/manifest.json">
                 <link rel="stylesheet" href="/styles.css">
             </head>
             <body>
@@ -48,7 +54,25 @@ export const renderFullPage = (content, initialState) => {
                 <script>
                     window.INITIAL_STATE = ${serialize(initialState)}
                 </script>
+                <script>
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener('load', function() {
+                            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                                // Registration was successful
+                                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            }, function(err) {
+                                // registration failed :(
+                                console.log('ServiceWorker registration failed: ', err);
+                            }).catch(function(err) {
+                                console.log(err)
+                            });
+                        });
+                    } else {
+                        console.log('service worker is not supported');
+                    }
+                </script>
             </body>
+            <noscript>Your browser does not support Javascript! </noscript>
         </html>
     `
 };

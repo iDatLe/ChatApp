@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     output: {
@@ -50,6 +51,7 @@ module.exports = {
     
     plugins: [
         new MiniCssExtractPlugin({filename: 'styles.css'}),
+        new ManifestPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
     ]
