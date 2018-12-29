@@ -1,0 +1,30 @@
+.username {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+
+    h1 {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 4.2rem;
+        width: 40%;
+        text-align: center; 
+    }
+
+    &__container {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        & form {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 1rem; 
+        }
+    }
+
+}

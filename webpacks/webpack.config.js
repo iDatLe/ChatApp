@@ -34,7 +34,8 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    {loader: 'css-loader'}
+                    {loader: 'css-loader'},
+                    {loader: 'sass-loader'}
                 ]
             },
             {
@@ -56,5 +57,10 @@ module.exports = {
         new ManifestPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                WEBPACK: JSON.stringify(true),
+            }
+        })
     ]
 }

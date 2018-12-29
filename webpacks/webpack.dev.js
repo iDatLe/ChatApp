@@ -14,8 +14,8 @@ module.exports = merge(baseConfig, {
         port: 8080,
         proxy: {
             '**': {
-                target: 'http://[::1]:3000',
-                changeOrigin: true,
+                target: 'http://localhost:3000',
+                // changeOrigin: true,
                 secure: false
             }
         }

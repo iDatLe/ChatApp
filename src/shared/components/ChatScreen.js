@@ -12,7 +12,7 @@ class ChatScreen extends Component {
             instanceLocator: 'v1:us1:8f5e48cf-aae6-458e-bc5c-3eb9ba5bb8d3',
             userId: this.props.usernameForm.username,
             tokenProvider: new TokenProvider({
-                url: 'http://localhost:3001/api/authenticate',
+                url: 'http://localhost:8080/api/authenticate',
             })
         })
 

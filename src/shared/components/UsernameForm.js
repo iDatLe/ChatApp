@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styles from '../css/username.css';
+if(process.env.WEBPACK) require('../scss/username.scss');
+// import styles from '../css/username.scss';
 
  class UsernameForm extends Component {
      render() {
