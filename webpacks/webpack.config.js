@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const ManifestPlugin = require('webpack-manifest-plugin');
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     output: {
@@ -29,10 +30,11 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader'
+                    {loader: 'css-loader'}
                 ]
             },
             {

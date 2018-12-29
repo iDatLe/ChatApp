@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import MappedRoutes from './routes/mappedRoutes.js'
 import routes from './routes/routes.js'
+import styles from './css/main.css';
 
 class App extends Component {
 

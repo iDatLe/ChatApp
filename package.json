@@ -1,5 +1,5 @@
 {
-  "name": "moneybudget",
+  "name": "chatapp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --config webpacks/webpack.dev.js --mode development",
     "dev:build": "webpack --config webpacks/webpack.dev.js --mode development --hot",
     "server": "nodemon --verbose --watch src/server src/server/server.js --exec babel-node",
+    "sass": "node-sass -w sass/ -o css/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
